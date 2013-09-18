@@ -4,10 +4,8 @@ testinject
 framework for JUnit test injection and lifecycle hooks
 
 
-Few example
-===========
-
-
+Usage
+=====
 
 
 An injected test class:
@@ -27,3 +25,4 @@ public class SimpleInjectTest {
 }
 ```
 
+...
