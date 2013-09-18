@@ -2,6 +2,7 @@ package com.atex.testinject;
 
 
 import com.google.inject.Injector;
+import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
@@ -44,13 +45,13 @@ public class TestInjectRunner extends BlockJUnit4ClassRunner {
         return returnStatement;
     }
 
-
-    @SuppressWarnings("deprecation")
     @Override
-    protected Statement withAfters(FrameworkMethod method, Object target, Statement statement) {
-        Statement returnStatement = super.withAfters(method, target, statement);
-        hooks.after();
-        return returnStatement;
+    protected void runChild(FrameworkMethod method, RunNotifier notifier) {
+        try {
+            super.runChild(method, notifier);
+        } finally {
+            hooks.after();
+        }
     }
 
 }

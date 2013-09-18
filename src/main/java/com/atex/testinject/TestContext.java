@@ -18,19 +18,10 @@ public class TestContext {
         modules.add(new Module() {
             @Override
             public void configure(Binder binder) {
-                CompositeTestHooks callbacks = new CompositeTestHooks();
-                initCallbacksFromServiceLoader(callbacks);
-                binder.bind(TestHooks.class).toInstance(callbacks);
+                binder.bind(TestHooks.class).to(CompositeTestHooks.class);
             }
         });
         return Guice.createInjector(modules);
-    }
-
-    private void initCallbacksFromServiceLoader(CompositeTestHooks callbacks) {
-        ServiceLoader<TestHooks> serviceLoader = ServiceLoader.load(TestHooks.class);
-        for (TestHooks callback : serviceLoader) {
-            callbacks.addTestRunCallbacks(callback);
-        }
     }
 
     private void initModulesFromServiceLoader(List<Module> modules) {

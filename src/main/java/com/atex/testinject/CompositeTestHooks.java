@@ -1,11 +1,13 @@
 package com.atex.testinject;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.google.inject.Inject;
+
+import java.util.Set;
 
 public class CompositeTestHooks implements TestHooks {
 
-    private List<TestHooks> hooks = new ArrayList<TestHooks>();
+    @Inject
+    private Set<TestHooks> hooks;
 
     public void addTestRunCallbacks(TestHooks callback) {
         this.hooks.add(callback);
