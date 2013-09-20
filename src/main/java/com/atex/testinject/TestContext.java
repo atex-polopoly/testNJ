@@ -33,7 +33,7 @@ public class TestContext {
     }
 
 
-    public static void registerTestHook(Binder binder, Class<TestHooks> hooks) {
+    public static void registerTestHook(Binder binder, Class<? extends TestHooks> hooks) {
         Multibinder<TestHooks> testHooksBindings =
                 Multibinder.newSetBinder(binder, TestHooks.class);
         testHooksBindings.addBinding().to(hooks);
