@@ -35,7 +35,6 @@ public class Module extends AbstractModule {
     }
 
 }
-
 ```
 
 **TestNJ** uses the Java Service Locator pattern to look for implementations of Guice modules in your projects (implementations of com.google.inject.Module). 
