@@ -66,7 +66,7 @@ public class SimpleInjectTest {
 ```
 
 
-### 4. Using hooks
+### 4. Use Callbacks
 
 You can register test callbacks and have your custom code run before/after a single test run.
 
@@ -108,7 +108,7 @@ public class Module extends AbstractModule {
     @Override
     protected void configure() {
         bind(Duck.class).toInstance(new SwedishBlueDuck());
-        TestNJContext.registerHook(binder(), DummyTestCallbacks.class);
+        TestNJContext.addCallbacks(binder(), DummyTestCallbacks.class);
     }
 
 }
