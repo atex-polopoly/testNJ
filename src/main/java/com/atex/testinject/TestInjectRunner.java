@@ -41,7 +41,7 @@ public class TestInjectRunner extends BlockJUnit4ClassRunner {
     @Override
     protected Statement withBefores(FrameworkMethod method, Object target, Statement statement) {
         Statement returnStatement = super.withBefores(method, target, statement);
-        hooks.before();
+        hooks.before(method, target, statement);
         return returnStatement;
     }
 
@@ -50,7 +50,7 @@ public class TestInjectRunner extends BlockJUnit4ClassRunner {
         try {
             super.runChild(method, notifier);
         } finally {
-            hooks.after();
+            hooks.after(method, notifier);
         }
     }
 

@@ -24,8 +24,6 @@ public class SimpleInjectTest {
     @After
     public void verify_hooks() {
         Assert.assertEquals("call expected on hooks.before", 1, MockTestHooks.befores);
-        // can't verify after this way
-        // Assert.assertEquals("call expected on hooks.after", 1, MockTestHooks.afters);
     }
 
 

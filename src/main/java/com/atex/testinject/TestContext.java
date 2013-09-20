@@ -4,6 +4,7 @@ import com.google.inject.Binder;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
+import com.google.inject.multibindings.Multibinder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,20 @@ public class TestContext {
         for (Module module : serviceLoader) {
             modules.add(module);
         }
+    }
+
+
+    public static void registerTestHook(Binder binder, Class<TestHooks> hooks) {
+        Multibinder<TestHooks> testHooksBindings =
+                Multibinder.newSetBinder(binder, TestHooks.class);
+        testHooksBindings.addBinding().to(hooks);
+    }
+
+
+    public static void registerTestHook(Binder binder, TestHooks hooks) {
+        Multibinder<TestHooks> testHooksBindings =
+                Multibinder.newSetBinder(binder, TestHooks.class);
+        testHooksBindings.addBinding().toInstance(hooks);
     }
 
 
