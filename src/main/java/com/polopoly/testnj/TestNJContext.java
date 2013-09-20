@@ -1,4 +1,4 @@
-package com.atex.testinject;
+package com.polopoly.testnj;
 
 import com.google.inject.Binder;
 import com.google.inject.Guice;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ServiceLoader;
 
-public class TestContext {
+public class TestNJContext {
 
     protected Injector init() {
         List<Module> modules = new ArrayList<Module>();
@@ -19,7 +19,7 @@ public class TestContext {
         modules.add(new Module() {
             @Override
             public void configure(Binder binder) {
-                binder.bind(TestHooks.class).to(CompositeTestHooks.class);
+                binder.bind(TestCallbacks.class).to(CompositeTestCallbacks.class);
             }
         });
         return Guice.createInjector(modules);
@@ -33,16 +33,16 @@ public class TestContext {
     }
 
 
-    public static void registerTestHook(Binder binder, Class<? extends TestHooks> hooks) {
-        Multibinder<TestHooks> testHooksBindings =
-                Multibinder.newSetBinder(binder, TestHooks.class);
+    public static void addCallbacks(Binder binder, Class<? extends TestCallbacks> hooks) {
+        Multibinder<TestCallbacks> testHooksBindings =
+                Multibinder.newSetBinder(binder, TestCallbacks.class);
         testHooksBindings.addBinding().to(hooks);
     }
 
 
-    public static void registerTestHook(Binder binder, TestHooks hooks) {
-        Multibinder<TestHooks> testHooksBindings =
-                Multibinder.newSetBinder(binder, TestHooks.class);
+    public static void addCallbacks(Binder binder, TestCallbacks hooks) {
+        Multibinder<TestCallbacks> testHooksBindings =
+                Multibinder.newSetBinder(binder, TestCallbacks.class);
         testHooksBindings.addBinding().toInstance(hooks);
     }
 

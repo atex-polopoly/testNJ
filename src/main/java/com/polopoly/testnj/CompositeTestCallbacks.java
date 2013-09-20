@@ -1,4 +1,4 @@
-package com.atex.testinject;
+package com.polopoly.testnj;
 
 import com.google.inject.Inject;
 import org.junit.runner.notification.RunNotifier;
@@ -7,25 +7,25 @@ import org.junit.runners.model.Statement;
 
 import java.util.Set;
 
-public class CompositeTestHooks implements TestHooks {
+public class CompositeTestCallbacks implements TestCallbacks {
 
     @Inject
-    private Set<TestHooks> hooks;
+    private Set<TestCallbacks> hooks;
 
-    public void addTestRunCallbacks(TestHooks callback) {
+    public void addCallbacks(TestCallbacks callback) {
         this.hooks.add(callback);
     }
 
     @Override
     public void before(FrameworkMethod method, Object target, Statement statement) {
-        for (TestHooks hook : hooks) {
+        for (TestCallbacks hook : hooks) {
             hook.before(method, target, statement);
         }
     }
 
     @Override
     public void after(FrameworkMethod method, RunNotifier notifier) {
-        for (TestHooks hook : hooks) {
+        for (TestCallbacks hook : hooks) {
             hook.after(method, notifier);
         }
     }

@@ -1,4 +1,4 @@
-package com.atex.testinject.test;
+package com.polopoly.testnj.test;
 
 public class SwedishBlueDuck implements Duck {
 

@@ -1,7 +1,7 @@
-package com.atex.testinject.test;
+package com.polopoly.testnj.test;
 
 
-import com.atex.testinject.TestInjectRunner;
+import com.polopoly.testnj.TestNJRunner;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
 
-@RunWith(TestInjectRunner.class)
+@RunWith(TestNJRunner.class)
 public class SimpleInjectTest {
 
     @Inject
@@ -23,7 +23,7 @@ public class SimpleInjectTest {
 
     @After
     public void verify_hooks() {
-        Assert.assertEquals("call expected on hooks.before", 1, MockTestHooks.befores);
+        Assert.assertEquals("call expected on hooks.before", 1, MockTestCallbacks.befores);
     }
 
 

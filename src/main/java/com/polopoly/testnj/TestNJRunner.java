@@ -1,4 +1,4 @@
-package com.atex.testinject;
+package com.polopoly.testnj;
 
 
 import com.google.inject.Injector;
@@ -8,14 +8,14 @@ import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.Statement;
 
-public class TestInjectRunner extends BlockJUnit4ClassRunner {
+public class TestNJRunner extends BlockJUnit4ClassRunner {
 
     private static Injector injector;
     private static Object initLock = new Object();
 
-    private static TestHooks hooks;
+    private static TestCallbacks hooks;
 
-    public TestInjectRunner(Class<?> klass) throws InitializationError {
+    public TestNJRunner(Class<?> klass) throws InitializationError {
         super(klass);
         initInjectorIfNecessary();
     }
@@ -23,8 +23,8 @@ public class TestInjectRunner extends BlockJUnit4ClassRunner {
     private void initInjectorIfNecessary() {
         synchronized (initLock) {
             if (injector == null) {
-                injector = new TestContext().init();
-                hooks = injector.getInstance(TestHooks.class);
+                injector = new TestNJContext().init();
+                hooks = injector.getInstance(TestCallbacks.class);
             }
         }
     }
