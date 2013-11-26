@@ -6,11 +6,15 @@ import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.google.inject.multibindings.Multibinder;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ServiceLoader;
+import java.util.*;
 
 public class TestNJContext {
+
+
+    private static Set<TestCallbacks> callbacks =
+            new HashSet<TestCallbacks>();
+
+
 
     protected Injector init() {
         List<Module> modules = new ArrayList<Module>();
@@ -19,7 +23,15 @@ public class TestNJContext {
         modules.add(new Module() {
             @Override
             public void configure(Binder binder) {
+                Multibinder<TestCallbacks> testHooksBindings =
+                        Multibinder.newSetBinder(binder, TestCallbacks.class);
+                for (TestCallbacks callback : callbacks) {
+                    testHooksBindings.addBinding().toInstance(callback);
+                }
+
                 binder.bind(TestCallbacks.class).to(CompositeTestCallbacks.class);
+
+
             }
         });
         return Guice.createInjector(modules);
@@ -32,20 +44,10 @@ public class TestNJContext {
         }
     }
 
+    public static void addCallback(TestCallbacks callback) {
+        callbacks.add(callback);
 
-    public static void addCallbacks(Binder binder, Class<? extends TestCallbacks> hooks) {
-        Multibinder<TestCallbacks> testHooksBindings =
-                Multibinder.newSetBinder(binder, TestCallbacks.class);
-        testHooksBindings.addBinding().to(hooks);
     }
-
-
-    public static void addCallbacks(Binder binder, TestCallbacks hooks) {
-        Multibinder<TestCallbacks> testHooksBindings =
-                Multibinder.newSetBinder(binder, TestCallbacks.class);
-        testHooksBindings.addBinding().toInstance(hooks);
-    }
-
 
 
 }
