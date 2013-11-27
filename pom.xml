@@ -7,13 +7,30 @@
   <groupId>com.polopoly</groupId>
   <artifactId>testNJ</artifactId>
   <version>1.0-SNAPSHOT</version>
-
+  <packaging>jar</packaging>
 
   <name>TestInject</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+
+  <distributionManagement>
+    <repository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>polopoly-ps</id>
+      <name>Professional Services</name>
+      <url>http://maven.polopoly.com/nexus/content/repositories/professional-services</url>
+      <layout>default</layout>
+    </repository>
+    <snapshotRepository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>polopoly-ps-snapshots</id>
+      <name>Professional Services Snapshots</name>
+      <url>http://maven.polopoly.com/nexus/content/repositories/professional-services-snapshots</url>
+      <layout>default</layout>
+    </snapshotRepository>
+  </distributionManagement>
 
   <build>
     <plugins>
