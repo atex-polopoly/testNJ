@@ -107,7 +107,7 @@ public class Module extends AbstractModule {
     @Override
     protected void configure() {
         bind(Duck.class).toInstance(new SwedishBlueDuck());
-        TestNJContext.addCallbacks(binder(), DummyTestCallbacks.class);
+        TestNJContext.addCallback(new DummyTestCallbacks());
     }
 
 }
