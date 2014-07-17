@@ -1,12 +1,19 @@
 package com.polopoly.testnj;
 
 
+import com.google.inject.Inject;
 import com.google.inject.Injector;
+import org.junit.rules.MethodRule;
+import org.junit.rules.TestRule;
 import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.Statement;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class TestNJRunner extends BlockJUnit4ClassRunner {
 
@@ -15,9 +22,14 @@ public class TestNJRunner extends BlockJUnit4ClassRunner {
 
     private static TestCallbacks hooks;
 
+    @Inject
+    private Set<TestRule> methodRules;
+
+
     public TestNJRunner(Class<?> klass) throws InitializationError {
         super(klass);
         initInjectorIfNecessary();
+        injector.injectMembers(this);
     }
 
     private void initInjectorIfNecessary() {
@@ -53,5 +65,17 @@ public class TestNJRunner extends BlockJUnit4ClassRunner {
             hooks.after(method, notifier);
         }
     }
+
+    @Override
+    protected List<TestRule> getTestRules(final Object target)
+    {
+        List<TestRule> rules = super.getTestRules(target);
+        List<TestRule> decoratedRules = new ArrayList<TestRule>();
+        decoratedRules.addAll(rules);
+        decoratedRules.addAll(methodRules);
+
+        return decoratedRules;
+    }
+
 
 }

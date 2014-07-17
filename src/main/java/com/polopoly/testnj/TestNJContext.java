@@ -5,6 +5,10 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.google.inject.multibindings.Multibinder;
+import org.junit.rules.MethodRule;
+import org.junit.rules.TestRule;
+import org.junit.runner.Description;
+import org.junit.runners.model.Statement;
 
 import java.util.*;
 
@@ -13,8 +17,6 @@ public class TestNJContext {
 
     private static Set<TestCallbacks> callbacks =
             new HashSet<TestCallbacks>();
-
-
 
     protected Injector init() {
         List<Module> modules = new ArrayList<Module>();
@@ -31,7 +33,8 @@ public class TestNJContext {
 
                 binder.bind(TestCallbacks.class).to(CompositeTestCallbacks.class);
 
-
+                // Make sure there is at least an empty set of rules
+                Multibinder.newSetBinder(binder, TestRule.class);
             }
         });
         return Guice.createInjector(modules);
@@ -46,7 +49,6 @@ public class TestNJContext {
 
     public static void addCallback(TestCallbacks callback) {
         callbacks.add(callback);
-
     }
 
 
