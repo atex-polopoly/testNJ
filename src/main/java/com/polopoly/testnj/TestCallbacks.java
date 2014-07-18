@@ -9,5 +9,4 @@ public interface TestCallbacks {
     void before(FrameworkMethod method, Object target, Statement statement);
 
     void after(FrameworkMethod method, RunNotifier notifier);
-
 }
