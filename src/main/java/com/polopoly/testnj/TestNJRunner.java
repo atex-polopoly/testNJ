@@ -1,9 +1,10 @@
 package com.polopoly.testnj;
 
 
-import com.google.inject.Inject;
-import com.google.inject.Injector;
-import org.junit.rules.MethodRule;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import org.junit.rules.TestRule;
 import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.BlockJUnit4ClassRunner;
@@ -11,9 +12,8 @@ import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.Statement;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
 
 public class TestNJRunner extends BlockJUnit4ClassRunner {
 
