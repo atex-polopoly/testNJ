@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.polopoly</groupId>
@@ -14,23 +13,6 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-
-  <distributionManagement>
-    <repository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>polopoly-ps</id>
-      <name>Professional Services</name>
-      <url>http://maven.polopoly.com/nexus/content/repositories/professional-services</url>
-      <layout>default</layout>
-    </repository>
-    <snapshotRepository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>polopoly-ps-snapshots</id>
-      <name>Professional Services Snapshots</name>
-      <url>http://maven.polopoly.com/nexus/content/repositories/professional-services-snapshots</url>
-      <layout>default</layout>
-    </snapshotRepository>
-  </distributionManagement>
 
   <build>
     <plugins>
@@ -63,5 +45,25 @@
       <version>4.11</version>
     </dependency>
   </dependencies>
-
+  <profiles>
+    <profile>
+      <id>deploy</id>
+      <distributionManagement>
+        <repository>
+          <uniqueVersion>false</uniqueVersion>
+          <id>polopoly-ps</id>
+          <name>Professional Services</name>
+          <url>http://maven.polopoly.com/nexus/content/repositories/professional-services</url>
+          <layout>default</layout>
+        </repository>
+        <snapshotRepository>
+          <uniqueVersion>false</uniqueVersion>
+          <id>polopoly-ps-snapshots</id>
+          <name>Professional Services Snapshots</name>
+          <url>http://maven.polopoly.com/nexus/content/repositories/professional-services-snapshots</url>
+          <layout>default</layout>
+        </snapshotRepository>
+      </distributionManagement>
+    </profile>
+  </profiles>
 </project>
