@@ -50,18 +50,14 @@
       <id>deploy</id>
       <distributionManagement>
         <repository>
-          <uniqueVersion>false</uniqueVersion>
-          <id>polopoly-ps</id>
-          <name>Professional Services</name>
-          <url>http://maven.polopoly.com/nexus/content/repositories/professional-services</url>
-          <layout>default</layout>
+          <id>polopoly-product</id>
+          <name>Polopoly Product</name>
+          <url>http://maven.polopoly.com/nexus/content/repositories/polopoly-product</url>
         </repository>
         <snapshotRepository>
-          <uniqueVersion>false</uniqueVersion>
-          <id>polopoly-ps-snapshots</id>
-          <name>Professional Services Snapshots</name>
-          <url>http://maven.polopoly.com/nexus/content/repositories/professional-services-snapshots</url>
-          <layout>default</layout>
+          <id>polopoly-product-snapshots</id>
+          <name>Polopoly Product</name>
+          <url>http://maven.polopoly.com/nexus/content/repositories/polopoly-product-snapshots</url>
         </snapshotRepository>
       </distributionManagement>
     </profile>
