@@ -14,6 +14,12 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
+  <scm>
+    <connection>scm:git:git@github.com:atex-polopoly/testNJ.git</connection>
+    <developerConnection>scm:git:git@github.com:atex-polopoly/testNJ.git</developerConnection>
+    <url>https://github.com/atex-polopoly/testNJ</url>
+  </scm>
+
   <build>
     <plugins>
       <plugin>
