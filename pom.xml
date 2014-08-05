@@ -4,7 +4,7 @@
 
   <groupId>com.polopoly</groupId>
   <artifactId>testNJ</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>TestInject</name>
@@ -17,7 +17,7 @@
     <connection>scm:git:git@github.com:atex-polopoly/testNJ.git</connection>
     <developerConnection>scm:git:git@github.com:atex-polopoly/testNJ.git</developerConnection>
     <url>https://github.com/atex-polopoly/testNJ</url>
-    <tag>testNJ-1.0.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <build>
